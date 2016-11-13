@@ -38,6 +38,7 @@ def finishsetup():
 
 @app.route("/charge")
 def charge():
+    print("CLIENT ID: " + APPLICATION_ID)
     data = {"amount_money": {"amount": fee, "currency_code": "USD"},
             "callback_url": "myapp-url-scheme://payment-complete",
             "client_id": APPLICATION_ID,
