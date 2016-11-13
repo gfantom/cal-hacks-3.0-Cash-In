@@ -18,6 +18,7 @@ def login():
 
 @app.route("/eventpage")
 def eventpage():
+    return render_template("eventpage.html")
 
 @app.route("/callback")
 def callback():
