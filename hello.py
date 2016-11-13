@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect
 import requests
 from config import *
 import urllib
+import os
 
 auth_code = ""
 access_token = ""
@@ -64,4 +65,5 @@ def callback():
         return render_template("eventpage.html")
     
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
