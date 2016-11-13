@@ -58,7 +58,7 @@ def callback():
     if request.args.get("code"):
         payload = {"client_id": APPLICATION_ID, "client_secret": APP_SECRET, "code": auth_code}
         response = requests.post(post_for_token, data=payload)
-        print( "THE RESPONSE IS: ", response )
+        print( "THE RESPONSE IS: ", response.status_code )
         access_token = response.headers["access_token"]
         return render_template("eventsetup.html")
     #if receiving data from a sent transaction...
