@@ -1,5 +1,4 @@
-import os
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 from config import *
 
@@ -24,16 +23,15 @@ def eventpage():
 @app.route("/callback")
 def callback():
     #if getting auth code...
-    auth_code = requests.args.get("code")
-    if requests.args.get("code"):
+    auth_code = request.args.get("code")
+    if request.args.get("code"):
         payload = {"client_id": APPLICATION_ID, "client_secret": APP_SECRET, "code": auth_code}
         response = requests.post(post_for_token, data=payload)
         access_token = response.headers["access_token"]
         return render_template("eventsetup.html")
     #if receiving data from a sent transaction...
-    elif requests.args.get("data"):
+    elif request.args.get("data"):
         return render_template("eventpage.html")
     
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0",port=port)
+    app.run()
