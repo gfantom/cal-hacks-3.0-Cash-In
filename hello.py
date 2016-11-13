@@ -6,6 +6,7 @@ import urllib
 auth_code = ""
 access_token = ""
 post_for_token = "https://connect.squareup.com/oauth2/token"
+charge_url = "square-commerce-v1://payment/create?data="
 fee = 0
 event_label = ""
 
@@ -44,7 +45,7 @@ def charge():
             "clear_default_fees": True,
             "auto_return": True,
             "skip_receipt": True}
-    return redirect("square-commerce-v1://payment/create?data=" +
+    return redirect(charge_url +
                     urllib.urlencode(data))
     
 
