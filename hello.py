@@ -56,6 +56,7 @@ def callback():
     #auth_code = request.args.get("code")
     print("THE AUTH_CODE IS: " + auth_code)
     if request.args.get("code"):
+        auth_code = request.args.get("code")
         payload = {"client_id": APPLICATION_ID, "client_secret": APP_SECRET, "code": auth_code}
         response = requests.post(post_for_token, data=payload)
         print( "THE RESPONSE IS: ", response.status_code )
